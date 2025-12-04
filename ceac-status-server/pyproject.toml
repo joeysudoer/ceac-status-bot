@@ -1,0 +1,10 @@
+[project]
+name = "ceac-status-server"
+version = "0.1.0"
+description = "CEAC Status API Server"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "flask>=3.0.0",
+]
+
