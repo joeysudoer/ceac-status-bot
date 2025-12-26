@@ -91,14 +91,14 @@ class NotificationManager:
             # Treat as status change
             self.__save_current_status(current_status, current_last_updated)
             self.__send_notifications(res, change_type="status")
-            log_with_timestamp(f"Status changed to: {current_status}")
+            log_with_timestamp(f"Result: status changed to: {current_status}")
         elif case_updated_changed:
             # Only case_last_updated changed
             self.__save_current_status(current_status, current_last_updated)
             self.__send_notifications(res, change_type="case_updated")
-            log_with_timestamp(f"Case last updated changed to: {current_last_updated}")
+            log_with_timestamp(f"Result: case last updated changed to: {current_last_updated}")
         else:
-            log_with_timestamp("No changes detected. No notification sent.")
+            log_with_timestamp("Result: no changes detected, no notification sent.")
 
     def __get_last_status(self) -> dict:
         """从 API 获取上一次的状态"""

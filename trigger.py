@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 
 from CEACStatusBot import (
     EmailNotificationHandle,
+    IOSNotificationHandle,
     NotificationManager,
     TelegramNotificationHandle,
 )
@@ -58,6 +59,22 @@ if BOT_TOKEN and CHAT_ID:
     notificationManager.addHandle(tgNotif)
 else:
     log_with_timestamp("Telegram bot notification config missing or incomplete")
+
+
+# --- Optional: iOS notifications ---
+# iOS notification 默认启用，使用内置的默认 URL
+# 如果需要自定义 URL，可以设置环境变量 IOS_NOTIFICATION_URL
+IOS_NOTIFICATION_URL = os.getenv("IOS_NOTIFICATION_URL")
+
+if IOS_NOTIFICATION_URL:
+    iosNotif = IOSNotificationHandle(IOS_NOTIFICATION_URL)
+    notificationManager.addHandle(iosNotif)
+    log_with_timestamp(f"iOS notification enabled with custom URL: {IOS_NOTIFICATION_URL}")
+else:
+    # 使用默认 URL
+    iosNotif = IOSNotificationHandle()
+    notificationManager.addHandle(iosNotif)
+    log_with_timestamp("iOS notification enabled with default URL")
 
 
 # --- Send notifications ---
