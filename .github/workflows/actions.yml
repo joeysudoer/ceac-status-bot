@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *' # 每小时执行1次
+    - cron: '0,20,40 * * * *' # 每小时的0分,20分,40分执行
 
 jobs:
   build:
